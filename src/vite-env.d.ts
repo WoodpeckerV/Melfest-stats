@@ -10,15 +10,28 @@ type FilePickerOptions = {
   types?: FilePickerAcceptType[];
 };
 
+type FileSystemPermissionDescriptor = {
+  mode?: 'read' | 'readwrite';
+};
+
+interface FileSystemHandle {
+  name: string;
+  queryPermission?: (descriptor?: FileSystemPermissionDescriptor) => Promise<PermissionState>;
+  requestPermission?: (descriptor?: FileSystemPermissionDescriptor) => Promise<PermissionState>;
+}
+
 interface FileSystemWritableFileStream {
   write(data: string | Blob): Promise<void>;
   close(): Promise<void>;
 }
 
-interface FileSystemFileHandle {
+interface FileSystemFileHandle extends FileSystemHandle {
   createWritable(): Promise<FileSystemWritableFileStream>;
 }
 
 interface Window {
   showSaveFilePicker?: (options?: FilePickerOptions) => Promise<FileSystemFileHandle>;
+  showOpenFilePicker?: (
+    options?: FilePickerOptions & { multiple?: boolean }
+  ) => Promise<FileSystemFileHandle[]>;
 }

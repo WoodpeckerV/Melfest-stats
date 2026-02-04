@@ -46,8 +46,9 @@ The published site reads `public/data/mfst-data.json` when no LocalStorage data 
 
 Workflow:
 1. Open admin page (`#/mfst-sets`), upload CSVs, configure songs.
-2. Click **Save to repo file** (Chromium browsers) and select `public/data/mfst-data.json`.
-3. Commit + push. GitHub Pages rebuilds and everyone sees the new data.
+2. Click **Link repo file** (Chromium browsers) and select `public/data/mfst-data.json` once.
+3. From now on, updates auto-save to the linked file.
+4. Commit + push. GitHub Pages rebuilds and everyone sees the new data.
 
 Fallback:
-- If **Save to repo file** is not available, use **Export JSON** and manually replace `public/data/mfst-data.json`.
+- If file linking is not available, use **Export JSON** and manually replace `public/data/mfst-data.json`.

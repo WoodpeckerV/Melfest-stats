@@ -284,6 +284,20 @@ input[type='date']:focus {
   margin-top: 16px;
 }
 
+.linked-file {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-1);
+}
+
+.linked-file strong {
+  color: var(--text-0);
+}
+
 .status {
   margin-bottom: 24px;
   padding: 14px 18px;

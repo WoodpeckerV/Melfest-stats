@@ -1,4 +1,4 @@
-import { useMemo, useState, type Dispatch, type SetStateAction } from 'react';
+import { useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import type { AppState, Round } from '../types';
 import { ROUND_OPTIONS } from '../utils';
 import {
@@ -9,6 +9,13 @@ import {
   REPO_DATA_PATH
 } from '../storage';
 import { parseCsvFile } from '../csv';
+import {
+  clearLinkedFileHandle,
+  ensureWritePermission,
+  getLinkedFileHandle,
+  setLinkedFileHandle,
+  writeFileHandle
+} from '../fileHandle';
 
 const roundDescriptions: Record<Round, string> = {
   'Heat 1': 'Heat 1',
@@ -59,12 +66,37 @@ function AdminPage({ state, setState }: AdminPageProps) {
   const [newRounds, setNewRounds] = useState<Round[]>([]);
   const [status, setStatus] = useState<Status | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [linkedHandle, setLinkedHandle] = useState<FileSystemFileHandle | null>(null);
+  const saveQueue = useRef(Promise.resolve());
+  const fileApiSupported = Boolean(window.showOpenFilePicker || window.showSaveFilePicker);
 
   const allowedUris = useMemo(
     () => new Set(state.songs.map((song) => song.uri)),
     [state.songs]
   );
   const labelMap = useMemo(() => buildLabelMap(state.points), [state.points]);
+
+  useEffect(() => {
+    if (!fileApiSupported) return;
+    getLinkedFileHandle()
+      .then((handle) => setLinkedHandle(handle))
+      .catch(() => setLinkedHandle(null));
+  }, [fileApiSupported]);
+
+  useEffect(() => {
+    if (!linkedHandle) return;
+    const payload = exportState(state);
+    saveQueue.current = saveQueue.current
+      .then(async () => {
+        const ok = await ensureWritePermission(linkedHandle);
+        if (!ok) throw new Error('Write permission denied.');
+        await writeFileHandle(linkedHandle, payload);
+      })
+      .catch((error) => {
+        const message = error instanceof Error ? error.message : 'Failed to write file.';
+        setStatus({ type: 'error', message: `Auto-save failed: ${message}` });
+      });
+  }, [state, linkedHandle]);
 
   const addSong = () => {
     const uri = newUri.trim();
@@ -191,29 +223,74 @@ function AdminPage({ state, setState }: AdminPageProps) {
     setStatus({ type: 'info', message: 'All data cleared.' });
   };
 
-  const handleSaveToRepo = async () => {
-    if (!window.showSaveFilePicker) {
+  const pickRepoFileHandle = async () => {
+    if (window.showOpenFilePicker) {
+      const [handle] = await window.showOpenFilePicker({
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+        multiple: false
+      });
+      return handle;
+    }
+    if (window.showSaveFilePicker) {
+      return window.showSaveFilePicker({
+        suggestedName: 'mfst-data.json',
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+      });
+    }
+    throw new Error('File picker not supported in this browser.');
+  };
+
+  const handleLinkRepoFile = async () => {
+    if (!fileApiSupported) {
       setStatus({
         type: 'error',
         message:
-          'Save to repo file is only supported in Chromium-based browsers. Use Export JSON instead.'
+          'File linking is only supported in Chromium-based browsers. Use Export JSON instead.'
       });
       return;
     }
     try {
-      const handle = await window.showSaveFilePicker({
-        suggestedName: 'mfst-data.json',
-        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
-      });
-      const writable = await handle.createWritable();
-      await writable.write(exportState(state));
-      await writable.close();
+      const handle = await pickRepoFileHandle();
+      if (!handle) return;
+      await setLinkedFileHandle(handle);
+      setLinkedHandle(handle);
+      const ok = await ensureWritePermission(handle);
+      if (!ok) {
+        setStatus({
+          type: 'error',
+          message: 'Write permission was denied. Please re-link the file.'
+        });
+        return;
+      }
+      await writeFileHandle(handle, exportState(state));
       setStatus({
         type: 'success',
-        message: `Saved. Make sure the file is ${REPO_DATA_PATH}, then commit and push.`
+        message: `Linked ${handle.name}. Auto-save enabled. Commit and push after updates.`
       });
     } catch (error) {
       if (error instanceof DOMException && error.name === 'AbortError') return;
+      const message = error instanceof Error ? error.message : 'Failed to link file.';
+      setStatus({ type: 'error', message });
+    }
+  };
+
+  const handleUnlinkRepoFile = async () => {
+    await clearLinkedFileHandle();
+    setLinkedHandle(null);
+    setStatus({ type: 'info', message: 'Repo file unlinked. Auto-save disabled.' });
+  };
+
+  const handleManualSave = async () => {
+    if (!linkedHandle) {
+      setStatus({ type: 'error', message: 'No repo file linked.' });
+      return;
+    }
+    try {
+      const ok = await ensureWritePermission(linkedHandle);
+      if (!ok) throw new Error('Write permission denied.');
+      await writeFileHandle(linkedHandle, exportState(state));
+      setStatus({ type: 'success', message: 'Saved to linked file.' });
+    } catch (error) {
       const message = error instanceof Error ? error.message : 'Failed to write file.';
       setStatus({ type: 'error', message });
     }
@@ -378,9 +455,15 @@ function AdminPage({ state, setState }: AdminPageProps) {
           <button className="btn" onClick={handleExport}>
             Export JSON
           </button>
-          <button className="btn" onClick={handleSaveToRepo}>
-            Save to repo file
-          </button>
+          {linkedHandle ? (
+            <button className="btn" onClick={handleManualSave}>
+              Save now
+            </button>
+          ) : (
+            <button className="btn" onClick={handleLinkRepoFile}>
+              Link repo file
+            </button>
+          )}
           <button className="btn ghost" onClick={handleLoadRemote}>
             Load from repo
           </button>
@@ -396,6 +479,20 @@ function AdminPage({ state, setState }: AdminPageProps) {
             Clear all data
           </button>
         </div>
+        {linkedHandle && (
+          <div className="linked-file">
+            <span>Linked file:</span>
+            <strong>{linkedHandle.name}</strong>
+            <button className="btn ghost" onClick={handleUnlinkRepoFile}>
+              Unlink
+            </button>
+          </div>
+        )}
+        {!fileApiSupported && (
+          <p className="muted" style={{ marginTop: 12 }}>
+            File linking requires a Chromium-based browser.
+          </p>
+        )}
       </section>
 
       <footer className="admin-footer">
