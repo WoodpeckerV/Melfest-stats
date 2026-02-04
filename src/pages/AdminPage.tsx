@@ -1,7 +1,13 @@
 import { useMemo, useState, type Dispatch, type SetStateAction } from 'react';
 import type { AppState, Round } from '../types';
 import { ROUND_OPTIONS } from '../utils';
-import { clearState, exportState, importState } from '../storage';
+import {
+  clearState,
+  exportState,
+  importState,
+  loadRemoteState,
+  REPO_DATA_PATH
+} from '../storage';
 import { parseCsvFile } from '../csv';
 
 const roundDescriptions: Record<Round, string> = {
@@ -185,6 +191,49 @@ function AdminPage({ state, setState }: AdminPageProps) {
     setStatus({ type: 'info', message: 'All data cleared.' });
   };
 
+  const handleSaveToRepo = async () => {
+    if (!window.showSaveFilePicker) {
+      setStatus({
+        type: 'error',
+        message:
+          'Save to repo file is only supported in Chromium-based browsers. Use Export JSON instead.'
+      });
+      return;
+    }
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: 'mfst-data.json',
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(exportState(state));
+      await writable.close();
+      setStatus({
+        type: 'success',
+        message: `Saved. Make sure the file is ${REPO_DATA_PATH}, then commit and push.`
+      });
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') return;
+      const message = error instanceof Error ? error.message : 'Failed to write file.';
+      setStatus({ type: 'error', message });
+    }
+  };
+
+  const handleLoadRemote = async () => {
+    const ok = window.confirm('Replace local data with the repository data file?');
+    if (!ok) return;
+    const remote = await loadRemoteState();
+    if (!remote) {
+      setStatus({
+        type: 'error',
+        message: 'Could not load repository data. Make sure the file exists.'
+      });
+      return;
+    }
+    setState(remote);
+    setStatus({ type: 'success', message: 'Repository data loaded.' });
+  };
+
   return (
     <div className="app admin">
       <header className="hero">
@@ -320,11 +369,20 @@ function AdminPage({ state, setState }: AdminPageProps) {
       <section className="panel">
         <div className="panel-header">
           <h2>Data tools</h2>
-          <p>Export or import the full dataset and configuration.</p>
+          <p>
+            Export or import the full dataset and configuration. Repository file:{' '}
+            <code>{REPO_DATA_PATH}</code>
+          </p>
         </div>
         <div className="tool-row">
           <button className="btn" onClick={handleExport}>
             Export JSON
+          </button>
+          <button className="btn" onClick={handleSaveToRepo}>
+            Save to repo file
+          </button>
+          <button className="btn ghost" onClick={handleLoadRemote}>
+            Load from repo
           </button>
           <label className="btn ghost">
             Import JSON

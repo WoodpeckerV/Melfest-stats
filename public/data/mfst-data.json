@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "songs": [
+    {
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rounds": [
+        "Heat 1",
+        "Final"
+      ]
+    },
+    {
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rounds": [
+        "Heat 1"
+      ]
+    },
+    {
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rounds": [
+        "Heat 1"
+      ]
+    },
+    {
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rounds": [
+        "Heat 1",
+        "Final"
+      ]
+    },
+    {
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rounds": [
+        "Heat 1",
+        "Finalkval"
+      ]
+    },
+    {
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rounds": [
+        "Heat 1"
+      ]
+    }
+  ],
+  "points": [
+    {
+      "date": "2026-01-30",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 36,
+      "streams": 37455,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-01-30",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 46,
+      "streams": 34793,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-01-30",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 76,
+      "streams": 26950,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-01-30",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 109,
+      "streams": 23368,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-01-30",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 167,
+      "streams": 20046,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-01-31",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 14,
+      "streams": 55948,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-01-31",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 15,
+      "streams": 55314,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-01-31",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 21,
+      "streams": 50397,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-01-31",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 25,
+      "streams": 47756,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-01-31",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 40,
+      "streams": 35323,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-01-31",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 73,
+      "streams": 27610,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-01",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 1,
+      "streams": 162368,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-01",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 2,
+      "streams": 153716,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-01",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 3,
+      "streams": 140777,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-01",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 4,
+      "streams": 136267,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-01",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 8,
+      "streams": 80391,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-01",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 15,
+      "streams": 59574,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-02",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 1,
+      "streams": 133393,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-02",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 2,
+      "streams": 120845,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-02",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 3,
+      "streams": 112457,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-02",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 4,
+      "streams": 108363,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-02",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 15,
+      "streams": 63421,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-02",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 31,
+      "streams": 41007,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-03",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 1,
+      "streams": 120451,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-03",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 2,
+      "streams": 117061,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-03",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 4,
+      "streams": 104177,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-03",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 5,
+      "streams": 97327,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-03",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 16,
+      "streams": 57152,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-03",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 38,
+      "streams": 34600,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
+    }
+  ]
+}

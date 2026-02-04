@@ -40,3 +40,14 @@ Steps:
 1. Push to `main`.
 2. In GitHub, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
 3. The workflow will build and deploy automatically.
+
+## Shared Data File (Variant A)
+The published site reads `public/data/mfst-data.json` when no LocalStorage data exists.
+
+Workflow:
+1. Open admin page (`#/mfst-sets`), upload CSVs, configure songs.
+2. Click **Save to repo file** (Chromium browsers) and select `public/data/mfst-data.json`.
+3. Commit + push. GitHub Pages rebuilds and everyone sees the new data.
+
+Fallback:
+- If **Save to repo file** is not available, use **Export JSON** and manually replace `public/data/mfst-data.json`.

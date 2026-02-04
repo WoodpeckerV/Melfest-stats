@@ -112,6 +112,11 @@ a:hover {
   color: var(--text-2);
 }
 
+.panel-header code {
+  font-family: 'Space Grotesk', 'Sora', monospace;
+  color: var(--accent);
+}
+
 .filters {
   margin-top: 24px;
   display: grid;

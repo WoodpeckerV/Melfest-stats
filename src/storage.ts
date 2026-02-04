@@ -2,6 +2,7 @@ import type { AppState, Point, Round, Song } from './types';
 import { ROUND_OPTIONS } from './utils';
 
 const STORAGE_KEY = 'mfst_v1';
+export const REPO_DATA_PATH = 'data/mfst-data.json';
 
 const EMPTY_STATE: AppState = {
   version: 1,
@@ -78,6 +79,10 @@ export function loadState(): AppState {
   }
 }
 
+export function hasStoredState(): boolean {
+  return Boolean(localStorage.getItem(STORAGE_KEY));
+}
+
 export function saveState(state: AppState): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
@@ -92,4 +97,17 @@ export function exportState(state: AppState): string {
 
 export function importState(json: string): AppState {
   return buildState(JSON.parse(json), true);
+}
+
+export async function loadRemoteState(): Promise<AppState | null> {
+  try {
+    const url = new URL(REPO_DATA_PATH, import.meta.env.BASE_URL).toString();
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) return null;
+    const text = await response.text();
+    if (!text.trim()) return null;
+    return importState(text);
+  } catch {
+    return null;
+  }
 }
