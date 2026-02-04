@@ -43,6 +43,7 @@ Steps:
 
 ## Shared Data File (Variant A)
 The published site reads `public/data/mfst-data.json` when no LocalStorage data exists.
+The app always attempts to load `public/data/mfst-data.json` on startup and will replace local data if the file is available.
 
 Workflow:
 1. Open admin page (`#/mfst-sets`), upload CSVs, configure songs.

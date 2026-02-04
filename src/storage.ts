@@ -79,10 +79,6 @@ export function loadState(): AppState {
   }
 }
 
-export function hasStoredState(): boolean {
-  return Boolean(localStorage.getItem(STORAGE_KEY));
-}
-
 export function saveState(state: AppState): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
@@ -99,15 +95,32 @@ export function importState(json: string): AppState {
   return buildState(JSON.parse(json), true);
 }
 
-export async function loadRemoteState(): Promise<AppState | null> {
+function buildCandidateUrls(): string[] {
+  const base = import.meta.env.BASE_URL || './';
+  const candidates = new Set<string>();
   try {
-    const url = new URL(REPO_DATA_PATH, import.meta.env.BASE_URL).toString();
-    const response = await fetch(url, { cache: 'no-store' });
-    if (!response.ok) return null;
-    const text = await response.text();
-    if (!text.trim()) return null;
-    return importState(text);
+    candidates.add(new URL(REPO_DATA_PATH, base).toString());
   } catch {
-    return null;
+    // ignore
   }
+  candidates.add(REPO_DATA_PATH);
+  candidates.add(`./${REPO_DATA_PATH}`);
+  candidates.add(`/${REPO_DATA_PATH}`);
+  return Array.from(candidates);
+}
+
+export async function loadRemoteState(): Promise<AppState | null> {
+  const urls = buildCandidateUrls();
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) continue;
+      const text = await response.text();
+      if (!text.trim()) continue;
+      return importState(text);
+    } catch {
+      // try next candidate
+    }
+  }
+  return null;
 }

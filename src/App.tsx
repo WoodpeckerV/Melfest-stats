@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { AppState } from './types';
-import { hasStoredState, loadRemoteState, loadState, saveState } from './storage';
+import { loadRemoteState, loadState, saveState } from './storage';
 import MainPage from './pages/MainPage';
 import AdminPage from './pages/AdminPage';
 
@@ -13,7 +13,6 @@ function App() {
   }, [state]);
 
   useEffect(() => {
-    if (hasStoredState()) return;
     let active = true;
     loadRemoteState().then((remote) => {
       if (remote && active) setState(remote);
