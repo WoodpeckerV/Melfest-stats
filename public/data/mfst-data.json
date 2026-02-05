@@ -273,6 +273,54 @@
       "streams": 34600,
       "artist": "Indra",
       "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-04",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 1,
+      "streams": 124995,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-04",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 2,
+      "streams": 114073,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-04",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 4,
+      "streams": 101200,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-04",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 5,
+      "streams": 93507,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-04",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 20,
+      "streams": 53667,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-04",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 43,
+      "streams": 31973,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
     }
   ]
 }
