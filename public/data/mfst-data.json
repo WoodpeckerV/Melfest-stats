@@ -39,6 +39,42 @@
       "rounds": [
         "Heat 1"
       ]
+    },
+    {
+      "uri": "spotify:track:3AfX2EhXub2DqgqJABSIXL",
+      "rounds": [
+        "Heat 2"
+      ]
+    },
+    {
+      "uri": "spotify:track:2LU2elj4xWnjTz6RCcPQCI",
+      "rounds": [
+        "Heat 2"
+      ]
+    },
+    {
+      "uri": "spotify:track:4kRZAIVd5BBkYSPRsqj2D2",
+      "rounds": [
+        "Heat 2"
+      ]
+    },
+    {
+      "uri": "spotify:track:0QcDwx1r5HXsxyMstgvHSm",
+      "rounds": [
+        "Heat 2"
+      ]
+    },
+    {
+      "uri": "spotify:track:65xzEd5KnACVqZ6sDHMEuw",
+      "rounds": [
+        "Heat 2"
+      ]
+    },
+    {
+      "uri": "spotify:track:7jU2y3rilGzbkxbeonPNjN",
+      "rounds": [
+        "Heat 2"
+      ]
     }
   ],
   "points": [
@@ -369,6 +405,102 @@
       "streams": 29068,
       "artist": "Indra",
       "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 1,
+      "streams": 160717,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 2,
+      "streams": 131598,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 3,
+      "streams": 126263,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 4,
+      "streams": 114123,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:3AfX2EhXub2DqgqJABSIXL",
+      "rank": 12,
+      "streams": 81504,
+      "artist": "FELICIA",
+      "track": "My System"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 20,
+      "streams": 58782,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:65xzEd5KnACVqZ6sDHMEuw",
+      "rank": 37,
+      "streams": 43246,
+      "artist": "Brandsta City Släckers",
+      "track": "Rakt in i elden"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:2LU2elj4xWnjTz6RCcPQCI",
+      "rank": 48,
+      "streams": 35087,
+      "artist": "Arwin",
+      "track": "Glitter"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 55,
+      "streams": 33189,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:4kRZAIVd5BBkYSPRsqj2D2",
+      "rank": 64,
+      "streams": 31420,
+      "artist": "Klara Almström",
+      "track": "Där hela världen väntar"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:0QcDwx1r5HXsxyMstgvHSm",
+      "rank": 71,
+      "streams": 30349,
+      "artist": "Robin Bengtsson",
+      "track": "Honey Honey"
+    },
+    {
+      "date": "2026-02-06",
+      "uri": "spotify:track:7jU2y3rilGzbkxbeonPNjN",
+      "rank": 147,
+      "streams": 22096,
+      "artist": "Laila Adèle",
+      "track": "Oxygen"
     }
   ]
 }
