@@ -325,6 +325,67 @@ input[type='date']:focus {
   gap: 24px;
 }
 
+.top-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  columns: 2;
+  column-gap: 14px;
+  column-fill: balance;
+}
+
+.top-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  break-inside: avoid;
+  margin-bottom: 6px;
+}
+
+.top-rank {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.top-title {
+  color: var(--text-0);
+  font-size: 14px;
+}
+
+.top-streams {
+  color: var(--text-2);
+  font-size: 13px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .top-list {
+    columns: 1;
+  }
+
+  .top-list li {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+
+  .top-rank {
+    grid-row: 1 / span 2;
+  }
+
+  .top-title {
+    grid-column: 2 / 3;
+  }
+
+  .top-streams {
+    grid-column: 2 / 3;
+    justify-self: end;
+  }
+}
+
 .chart-card {
   background: var(--bg-1);
   border-radius: 20px;

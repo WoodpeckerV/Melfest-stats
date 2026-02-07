@@ -124,6 +124,13 @@ function MainPage({ state }: MainPageProps) {
   const noMatches = !noSongs && filteredSongs.length === 0;
   const minDate = allDates[0] ?? '';
   const maxDate = allDates[allDates.length - 1] ?? '';
+  const lastDate = displayDates[displayDates.length - 1];
+  const topPoints = useMemo(() => {
+    if (!lastDate) return [];
+    return filteredPoints
+      .filter((point) => point.date === lastDate)
+      .sort((a, b) => a.rank - b.rank);
+  }, [filteredPoints, lastDate]);
 
   const toggleRound = (round: Round) => {
     setSelectedRounds((prev) =>
@@ -243,6 +250,29 @@ function MainPage({ state }: MainPageProps) {
             valueFormatter={(value) => `#${value}`}
           />
           <SongLegend items={rankSeries} />
+          {lastDate && (
+            <section className="panel top-panel">
+              <div className="panel-header">
+                <h2>Latest Top</h2>
+                <p>Chart snapshot for {formatDisplayDate(lastDate)}.</p>
+              </div>
+              {topPoints.length ? (
+                <ol className="top-list">
+                  {topPoints.map((point) => (
+                    <li key={`${point.uri}-${point.date}`}>
+                      <span className="top-rank">{point.rank}.</span>
+                      <span className="top-title">
+                        {point.artist} — {point.track}
+                      </span>
+                      <span className="top-streams">{point.streams.toLocaleString('en-US')}</span>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p className="muted">No data for the selected range.</p>
+              )}
+            </section>
+          )}
         </section>
       )}
     </div>
