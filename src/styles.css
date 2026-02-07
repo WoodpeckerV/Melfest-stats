@@ -336,9 +336,9 @@ input[type='date']:focus {
 
 .top-list li {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 3ch minmax(0, 1fr) auto;
   gap: 12px;
-  align-items: baseline;
+  align-items: center;
   padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   break-inside: avoid;
@@ -348,11 +348,13 @@ input[type='date']:focus {
 .top-rank {
   font-weight: 600;
   color: var(--accent);
+  text-align: right;
 }
 
 .top-title {
   color: var(--text-0);
   font-size: 14px;
+  min-width: 0;
 }
 
 .top-streams {
@@ -360,24 +362,19 @@ input[type='date']:focus {
   font-size: 13px;
   text-align: right;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .top-list {
     columns: 1;
   }
+}
 
+@media (max-width: 520px) {
   .top-list li {
-    grid-template-columns: auto 1fr;
-    align-items: center;
-  }
-
-  .top-rank {
-    grid-row: 1 / span 2;
-  }
-
-  .top-title {
-    grid-column: 2 / 3;
+    grid-template-columns: 3ch minmax(0, 1fr);
+    row-gap: 4px;
   }
 
   .top-streams {
