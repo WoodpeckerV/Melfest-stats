@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import ChartCard, { type ChartSeries } from '../components/ChartCard';
 import SongLegend from '../components/SongLegend';
 import type { AppState, Point, Round } from '../types';
@@ -71,6 +71,8 @@ function MainPage({ state }: MainPageProps) {
   const allDates = useMemo(() => sortUniqueDates(points.map((point) => point.date)), [points]);
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const [filtersCompact, setFiltersCompact] = useState(false);
 
   useEffect(() => {
     if (!allDates.length) {
@@ -81,6 +83,46 @@ function MainPage({ state }: MainPageProps) {
     setDateFrom((prev) => (prev && allDates.includes(prev) ? prev : allDates[0]));
     setDateTo((prev) => (prev && allDates.includes(prev) ? prev : allDates[allDates.length - 1]));
   }, [allDates]);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const mq = window.matchMedia('(max-width: 720px)');
+    let observer: IntersectionObserver | null = null;
+
+    const setupObserver = () => {
+      if (observer) observer.disconnect();
+      if (mq.matches) {
+        setFiltersCompact(false);
+        return;
+      }
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setFiltersCompact(!entry.isIntersecting);
+        },
+        { root: null, threshold: 0, rootMargin: '-24px 0px 0px 0px' }
+      );
+      observer.observe(sentinel);
+    };
+
+    const onChange = () => setupObserver();
+    setupObserver();
+
+    if (mq.addEventListener) {
+      mq.addEventListener('change', onChange);
+    } else {
+      mq.addListener(onChange);
+    }
+
+    return () => {
+      observer?.disconnect();
+      if (mq.removeEventListener) {
+        mq.removeEventListener('change', onChange);
+      } else {
+        mq.removeListener(onChange);
+      }
+    };
+  }, []);
 
   const activeRounds = selectedRounds.length ? selectedRounds : ROUND_OPTIONS;
   const filteredSongs = useMemo(
@@ -141,9 +183,9 @@ function MainPage({ state }: MainPageProps) {
   return (
     <div className="app">
       <header className="hero">
-        <div>
-          <p className="eyebrow">Melodifestivalen 2026</p>
-          <h1>Streaming Trends Dashboard</h1>
+        <div className="hero-content">
+          <p className="eyebrow">Streaming Trends Dashboard</p>
+          <h1>Melodifestivalen 2026</h1>
           <p className="hero-subtitle">
             Daily Melodifestivalen 2026 Spotify charts
           </p>
@@ -160,7 +202,8 @@ function MainPage({ state }: MainPageProps) {
         </div>
       </header>
 
-      <section className="panel">
+      <div ref={sentinelRef} className="filters-sentinel" aria-hidden="true" />
+      <section className={`panel filters-panel ${filtersCompact ? 'compact' : ''}`}>
         <div className="panel-header">
           <h2>Filters</h2>
           <p>Pick rounds and date range.</p>

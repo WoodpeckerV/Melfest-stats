@@ -314,7 +314,7 @@ function AdminPage({ state, setState }: AdminPageProps) {
   return (
     <div className="app admin">
       <header className="hero">
-        <div>
+        <div className="hero-content">
           <p className="eyebrow">Admin</p>
           <h1>Data & Song Setup</h1>
           <p className="hero-subtitle">Add the songs to track, upload CSVs, and export data.</p>

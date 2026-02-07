@@ -47,6 +47,7 @@ function ChartCard({
       data: item.data,
       borderColor: item.color,
       backgroundColor: item.color,
+      borderWidth: 2,
       pointRadius: 3,
       pointHoverRadius: 5,
       tension: 0.3,
@@ -61,6 +62,12 @@ function ChartCard({
     plugins: {
       legend: { display: false },
       tooltip: {
+        backgroundColor: 'rgba(7, 10, 20, 0.92)',
+        borderColor: 'rgba(255, 255, 255, 0.2)',
+        borderWidth: 1,
+        titleColor: '#f7f9ff',
+        bodyColor: '#d6e0f2',
+        padding: 12,
         callbacks: {
           label: (context) => {
             const value = context.parsed.y;
@@ -72,17 +79,17 @@ function ChartCard({
     },
     scales: {
       x: {
-        ticks: { color: '#9aa4b2', maxRotation: 0, autoSkip: true },
-        grid: { color: 'rgba(255, 255, 255, 0.06)' }
+        ticks: { color: '#9fb0c8', maxRotation: 0, autoSkip: true },
+        grid: { color: 'rgba(255, 255, 255, 0.08)' }
       },
       y: {
         reverse: reverseY,
-        ticks: { color: '#9aa4b2' },
+        ticks: { color: '#9fb0c8' },
         grid: { color: 'rgba(255, 255, 255, 0.08)' },
         title: {
           display: true,
           text: valueLabel,
-          color: '#cdd6e2'
+          color: '#d6e0f2'
         }
       }
     }
