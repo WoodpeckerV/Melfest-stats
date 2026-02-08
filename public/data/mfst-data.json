@@ -501,6 +501,102 @@
       "streams": 22096,
       "artist": "Laila Adèle",
       "track": "Oxygen"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 1,
+      "streams": 171290,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 2,
+      "streams": 167442,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 3,
+      "streams": 139455,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:3AfX2EhXub2DqgqJABSIXL",
+      "rank": 4,
+      "streams": 125436,
+      "artist": "FELICIA",
+      "track": "My System"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 5,
+      "streams": 124532,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:65xzEd5KnACVqZ6sDHMEuw",
+      "rank": 10,
+      "streams": 82571,
+      "artist": "Brandsta City Släckers",
+      "track": "Rakt in i elden"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 13,
+      "streams": 76894,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:2LU2elj4xWnjTz6RCcPQCI",
+      "rank": 26,
+      "streams": 50319,
+      "artist": "Arwin",
+      "track": "Glitter"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 33,
+      "streams": 41661,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:0QcDwx1r5HXsxyMstgvHSm",
+      "rank": 34,
+      "streams": 41455,
+      "artist": "Robin Bengtsson",
+      "track": "Honey Honey"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:4kRZAIVd5BBkYSPRsqj2D2",
+      "rank": 36,
+      "streams": 40839,
+      "artist": "Klara Almström",
+      "track": "Där hela världen väntar"
+    },
+    {
+      "date": "2026-02-07",
+      "uri": "spotify:track:7jU2y3rilGzbkxbeonPNjN",
+      "rank": 67,
+      "streams": 28427,
+      "artist": "Laila Adèle",
+      "track": "Oxygen"
     }
   ]
 }
