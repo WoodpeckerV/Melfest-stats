@@ -401,8 +401,13 @@ function AdminPage({ state, setState }: AdminPageProps) {
                   ))}
                 </div>
               </div>
-              <button className="btn ghost" onClick={() => removeSong(song.uri)}>
-                Remove
+              <button
+                className="icon-btn"
+                type="button"
+                aria-label="Remove song"
+                onClick={() => removeSong(song.uri)}
+              >
+                ×
               </button>
             </div>
           ))}

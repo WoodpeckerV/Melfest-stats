@@ -288,7 +288,7 @@ a:hover {
 }
 
 .round-grid.small {
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
 }
 
 .checkbox {
@@ -395,6 +395,7 @@ input[type='date']:focus {
   margin-top: 20px;
   display: grid;
   gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .song-row {
@@ -407,12 +408,14 @@ input[type='date']:focus {
   background: rgba(8, 10, 24, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 14px 30px rgba(7, 5, 20, 0.45);
+  position: relative;
 }
 
 .song-title {
   margin: 0 0 6px;
   font-weight: 600;
   color: var(--text-0);
+  padding-right: 44px;
 }
 
 .song-uri {
@@ -420,6 +423,28 @@ input[type='date']:focus {
   font-size: 14px;
   color: var(--text-1);
   word-break: break-all;
+  padding-right: 44px;
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--text-1);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.icon-btn:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--danger);
 }
 
 .dropzone {
