@@ -263,6 +263,29 @@ a:hover {
   color: var(--text-2);
 }
 
+.panel-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.top-date {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.top-date select {
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-2);
+  color: var(--text-0);
+}
+
 .panel-header code {
   font-family: 'Syne', 'Plus Jakarta Sans', monospace;
   color: var(--accent);
@@ -523,7 +546,7 @@ input[type='date']:focus {
 
 .top-list li {
   display: grid;
-  grid-template-columns: 3ch minmax(0, 1fr) auto;
+  grid-template-columns: 3ch minmax(0, 1fr) 4ch auto;
   gap: 12px;
   align-items: center;
   padding: 10px 12px;
@@ -553,6 +576,25 @@ input[type='date']:focus {
   color: var(--text-0);
   font-size: 14px;
   min-width: 0;
+}
+
+.top-delta {
+  font-size: 12px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.top-delta.delta-up {
+  color: var(--success);
+}
+
+.top-delta.delta-down {
+  color: var(--danger);
+}
+
+.top-delta.delta-same,
+.top-delta.delta-none {
+  color: var(--text-2);
 }
 
 .top-streams {
@@ -608,6 +650,16 @@ input[type='date']:focus {
   color: var(--text-1);
   font-size: 14px;
   transition: color 0.2s ease, transform 0.2s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.legend-item.is-hidden {
+  opacity: 0.45;
 }
 
 .legend-swatch {
@@ -754,12 +806,12 @@ input[type='date']:focus {
   }
 
   .top-list li {
-    grid-template-columns: 3ch minmax(0, 1fr);
+    grid-template-columns: 3ch minmax(0, 1fr) 4ch;
     row-gap: 4px;
   }
 
   .top-streams {
-    grid-column: 2 / 3;
+    grid-column: 2 / 4;
     justify-self: end;
   }
 }

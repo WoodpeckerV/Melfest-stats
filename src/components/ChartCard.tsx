@@ -14,9 +14,11 @@ import { formatNumber } from '../utils';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
 
 export type ChartSeries = {
+  id: string;
   label: string;
   color: string;
   data: Array<number | null>;
+  hidden?: boolean;
 };
 
 type ChartCardProps = {
@@ -43,6 +45,7 @@ function ChartCard({
   const data = {
     labels,
     datasets: series.map((item) => ({
+      hidden: item.hidden,
       label: item.label,
       data: item.data,
       borderColor: item.color,

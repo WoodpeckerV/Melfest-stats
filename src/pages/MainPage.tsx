@@ -45,7 +45,8 @@ function buildSeries(
   points: Point[],
   dates: string[],
   labelMap: Map<string, string>,
-  metric: 'streams' | 'rank'
+  metric: 'streams' | 'rank',
+  hiddenUris: Set<string>
 ): ChartSeries[] {
   const lookup = new Map<string, Point>();
   for (const point of points) {
@@ -55,19 +56,21 @@ function buildSeries(
   return songs.map((song) => {
     const label = labelMap.get(song.uri) ?? song.uri;
     const color = colorForUri(song.uri);
+    const hidden = hiddenUris.has(song.uri);
     const data = dates.map((date) => {
       const point = lookup.get(`${song.uri}|${date}`);
       if (!point) return null;
       return metric === 'streams' ? point.streams : point.rank;
     });
 
-    return { label, color, data };
+    return { id: song.uri, label, color, data, hidden };
   });
 }
 
 function MainPage({ state }: MainPageProps) {
   const { songs, points } = state;
   const [selectedRounds, setSelectedRounds] = useState<Round[]>(ROUND_OPTIONS);
+  const [hiddenUris, setHiddenUris] = useState<Set<string>>(() => new Set());
   const allDates = useMemo(() => sortUniqueDates(points.map((point) => point.date)), [points]);
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
@@ -151,13 +154,14 @@ function MainPage({ state }: MainPageProps) {
   const labelMap = useMemo(() => buildLabelMap(points), [points]);
 
   const streamSeries = useMemo(
-    () => buildSeries(filteredSongs, filteredPoints, displayDates, labelMap, 'streams'),
-    [filteredSongs, filteredPoints, displayDates, labelMap]
+    () =>
+      buildSeries(filteredSongs, filteredPoints, displayDates, labelMap, 'streams', hiddenUris),
+    [filteredSongs, filteredPoints, displayDates, labelMap, hiddenUris]
   );
 
   const rankSeries = useMemo(
-    () => buildSeries(filteredSongs, filteredPoints, displayDates, labelMap, 'rank'),
-    [filteredSongs, filteredPoints, displayDates, labelMap]
+    () => buildSeries(filteredSongs, filteredPoints, displayDates, labelMap, 'rank', hiddenUris),
+    [filteredSongs, filteredPoints, displayDates, labelMap, hiddenUris]
   );
 
   const dateLabels = displayDates.map(formatDisplayDate);
@@ -166,18 +170,58 @@ function MainPage({ state }: MainPageProps) {
   const noMatches = !noSongs && filteredSongs.length === 0;
   const minDate = allDates[0] ?? '';
   const maxDate = allDates[allDates.length - 1] ?? '';
-  const lastDate = displayDates[displayDates.length - 1];
+  const [topDate, setTopDate] = useState('');
+  useEffect(() => {
+    if (!displayDates.length) {
+      setTopDate('');
+      return;
+    }
+    const fallback = displayDates[displayDates.length - 1];
+    setTopDate((prev) => (prev && displayDates.includes(prev) ? prev : fallback));
+  }, [displayDates]);
+  const prevIndex = topDate ? displayDates.indexOf(topDate) : -1;
+  const prevDate = prevIndex > 0 ? displayDates[prevIndex - 1] : undefined;
   const topPoints = useMemo(() => {
-    if (!lastDate) return [];
+    if (!topDate) return [];
     return filteredPoints
-      .filter((point) => point.date === lastDate)
+      .filter((point) => point.date === topDate)
       .sort((a, b) => a.rank - b.rank);
-  }, [filteredPoints, lastDate]);
+  }, [filteredPoints, topDate]);
+
+  const prevRankMap = useMemo(() => {
+    const map = new Map<string, number>();
+    if (!prevDate) return map;
+    for (const point of filteredPoints) {
+      if (point.date === prevDate) map.set(point.uri, point.rank);
+    }
+    return map;
+  }, [filteredPoints, prevDate]);
+
+  const getDelta = (uri: string, current: number) => {
+    const prev = prevRankMap.get(uri);
+    if (prev === undefined) return { label: '—', className: 'delta-none' };
+    const diff = prev - current;
+    if (diff > 0) return { label: `▲${diff}`, className: 'delta-up' };
+    if (diff < 0) return { label: `▼${Math.abs(diff)}`, className: 'delta-down' };
+    return { label: '•0', className: 'delta-same' };
+  };
 
   const toggleRound = (round: Round) => {
     setSelectedRounds((prev) =>
       prev.includes(round) ? prev.filter((item) => item !== round) : [...prev, round]
     );
+  };
+
+  const toggleSongVisibility = (uri: string) => {
+    setHiddenUris((prev) => {
+      const next = new Set(prev);
+      if (next.has(uri)) {
+        next.delete(uri);
+      } else {
+        next.add(uri);
+      }
+      return next;
+    });
   };
 
   return (
@@ -282,7 +326,7 @@ function MainPage({ state }: MainPageProps) {
             series={streamSeries}
             valueLabel="Streams"
           />
-          <SongLegend items={streamSeries} />
+          <SongLegend items={streamSeries} onToggle={toggleSongVisibility} />
           <ChartCard
             title="Rank"
             subtitle="Chart rank per day. Lower is better."
@@ -292,24 +336,44 @@ function MainPage({ state }: MainPageProps) {
             valueLabel="Rank"
             valueFormatter={(value) => `#${value}`}
           />
-          <SongLegend items={rankSeries} />
-          {lastDate && (
+          <SongLegend items={rankSeries} onToggle={toggleSongVisibility} />
+          {topDate && (
             <section className="panel top-panel">
               <div className="panel-header">
-                <h2>Latest Top</h2>
-                <p>Chart snapshot for {formatDisplayDate(lastDate)}.</p>
+                <div className="panel-title-row">
+                  <div>
+                    <h2>Daily Top</h2>
+                    <p>Chart snapshot for {formatDisplayDate(topDate)}.</p>
+                  </div>
+                  <label className="top-date">
+                    <span>Date</span>
+                    <select value={topDate} onChange={(event) => setTopDate(event.target.value)}>
+                      {displayDates.map((date) => (
+                        <option key={date} value={date}>
+                          {formatDisplayDate(date)}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
               </div>
               {topPoints.length ? (
                 <ol className="top-list">
-                  {topPoints.map((point) => (
-                    <li key={`${point.uri}-${point.date}`}>
-                      <span className="top-rank">{point.rank}.</span>
-                      <span className="top-title">
-                        {point.artist} — {point.track}
-                      </span>
-                      <span className="top-streams">{point.streams.toLocaleString('en-US')}</span>
-                    </li>
-                  ))}
+                  {topPoints.map((point) => {
+                    const delta = getDelta(point.uri, point.rank);
+                    return (
+                      <li key={`${point.uri}-${point.date}`}>
+                        <span className="top-rank">{point.rank}.</span>
+                        <span className="top-title">
+                          {point.artist} — {point.track}
+                        </span>
+                        <span className={`top-delta ${delta.className}`}>{delta.label}</span>
+                        <span className="top-streams">
+                          {point.streams.toLocaleString('en-US')}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ol>
               ) : (
                 <p className="muted">No data for the selected range.</p>
