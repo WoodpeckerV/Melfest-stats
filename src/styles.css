@@ -279,11 +279,19 @@ a:hover {
 }
 
 .top-date select {
-  padding: 8px 10px;
+  padding: 8px 34px 8px 10px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: var(--bg-2);
   color: var(--text-0);
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #9fb0c8 50%),
+    linear-gradient(135deg, #9fb0c8 50%, transparent 50%);
+  background-position: calc(100% - 18px) 52%, calc(100% - 12px) 52%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
 }
 
 .panel-header code {
