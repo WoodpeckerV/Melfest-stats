@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -42,6 +43,20 @@ function ChartCard({
   valueLabel,
   valueFormatter = defaultFormatter
 }: ChartCardProps) {
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 720px)');
+    const update = () => setCompact(mq.matches);
+    update();
+    if (mq.addEventListener) {
+      mq.addEventListener('change', update);
+      return () => mq.removeEventListener('change', update);
+    }
+    mq.addListener(update);
+    return () => mq.removeListener(update);
+  }, []);
+
   const data = {
     labels,
     datasets: series.map((item) => ({
@@ -90,7 +105,7 @@ function ChartCard({
         ticks: { color: '#9fb0c8' },
         grid: { color: 'rgba(255, 255, 255, 0.08)' },
         title: {
-          display: true,
+          display: !compact,
           text: valueLabel,
           color: '#d6e0f2'
         }

@@ -10,6 +10,7 @@ export type Round =
 export type Song = {
   uri: string;
   rounds: Round[];
+  aliases?: string[];
 };
 
 export type Point = {

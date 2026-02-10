@@ -6,78 +6,92 @@
       "rounds": [
         "Heat 1",
         "Final"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
       "rounds": [
         "Heat 1"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
       "rounds": [
         "Heat 1"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
       "rounds": [
         "Heat 1",
         "Final"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
       "rounds": [
         "Heat 1",
         "Finalkval"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
       "rounds": [
         "Heat 1"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:3AfX2EhXub2DqgqJABSIXL",
       "rounds": [
         "Heat 2",
         "Final"
+      ],
+      "aliases": [
+        "spotify:track:1XmLPHkuv95o5NUodggzfv"
       ]
     },
     {
       "uri": "spotify:track:2LU2elj4xWnjTz6RCcPQCI",
       "rounds": [
         "Heat 2"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:4kRZAIVd5BBkYSPRsqj2D2",
       "rounds": [
         "Heat 2"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:0QcDwx1r5HXsxyMstgvHSm",
       "rounds": [
         "Heat 2",
         "Finalkval"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:65xzEd5KnACVqZ6sDHMEuw",
       "rounds": [
         "Heat 2",
         "Final"
-      ]
+      ],
+      "aliases": []
     },
     {
       "uri": "spotify:track:7jU2y3rilGzbkxbeonPNjN",
       "rounds": [
         "Heat 2"
-      ]
+      ],
+      "aliases": []
     }
   ],
   "points": [

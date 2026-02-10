@@ -10,7 +10,7 @@ export type CsvParseResult = {
 
 export async function parseCsvFile(
   file: File,
-  allowedUris: Set<string>
+  uriMap: Map<string, string>
 ): Promise<CsvParseResult> {
   const date = extractDateFromFilename(file.name);
   if (!date) {
@@ -33,7 +33,8 @@ export async function parseCsvFile(
 
         for (const row of results.data ?? []) {
           const uri = (row.uri || row.url || row.URL || row.URI || '').trim();
-          if (!uri || !allowedUris.has(uri)) {
+          const canonical = uri ? uriMap.get(uri) : undefined;
+          if (!canonical) {
             skipped += 1;
             continue;
           }
@@ -50,7 +51,7 @@ export async function parseCsvFile(
 
           points.push({
             date,
-            uri,
+            uri: canonical,
             rank,
             streams,
             artist,

@@ -69,12 +69,23 @@ function AdminPage({ state, setState }: AdminPageProps) {
   const [linkedHandle, setLinkedHandle] = useState<FileSystemFileHandle | null>(null);
   const saveQueue = useRef(Promise.resolve());
   const fileApiSupported = Boolean(window.showOpenFilePicker || window.showSaveFilePicker);
+  const [aliasEditingUri, setAliasEditingUri] = useState<string | null>(null);
+  const [aliasInput, setAliasInput] = useState('');
 
-  const allowedUris = useMemo(
-    () => new Set(state.songs.map((song) => song.uri)),
-    [state.songs]
-  );
+  const uriMap = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const song of state.songs) {
+      map.set(song.uri, song.uri);
+      for (const alias of song.aliases ?? []) {
+        map.set(alias, song.uri);
+      }
+    }
+    return map;
+  }, [state.songs]);
   const labelMap = useMemo(() => buildLabelMap(state.points), [state.points]);
+  const aliasSong = aliasEditingUri
+    ? state.songs.find((song) => song.uri === aliasEditingUri)
+    : undefined;
 
   useEffect(() => {
     if (!fileApiSupported) return;
@@ -112,7 +123,7 @@ function AdminPage({ state, setState }: AdminPageProps) {
 
     setState((prev) => ({
       ...prev,
-      songs: [...prev.songs, { uri, rounds: [...newRounds] }]
+      songs: [...prev.songs, { uri, rounds: [...newRounds], aliases: [] }]
     }));
 
     setNewUri('');
@@ -150,7 +161,7 @@ function AdminPage({ state, setState }: AdminPageProps) {
   const handleCsvFiles = async (files: FileList | File[]) => {
     const fileArray = Array.from(files);
     if (!fileArray.length) return;
-    if (!allowedUris.size) {
+    if (!uriMap.size) {
       setStatus({ type: 'error', message: 'Add songs before uploading CSV files.' });
       return;
     }
@@ -160,7 +171,7 @@ function AdminPage({ state, setState }: AdminPageProps) {
 
     for (const file of fileArray) {
       try {
-        const result = await parseCsvFile(file, allowedUris);
+        const result = await parseCsvFile(file, uriMap);
         results.push(result);
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown error.';
@@ -311,6 +322,57 @@ function AdminPage({ state, setState }: AdminPageProps) {
     setStatus({ type: 'success', message: 'Repository data loaded.' });
   };
 
+  const openAliasModal = (uri: string) => {
+    setAliasEditingUri(uri);
+    setAliasInput('');
+  };
+
+  const closeAliasModal = () => {
+    setAliasEditingUri(null);
+    setAliasInput('');
+  };
+
+  const addAlias = () => {
+    if (!aliasSong) return;
+    const alias = aliasInput.trim();
+    if (!alias) return;
+    if (alias === aliasSong.uri) {
+      setStatus({ type: 'error', message: 'Alias cannot match the primary uri.' });
+      return;
+    }
+    const duplicate = state.songs.some(
+      (song) => song.uri === alias || (song.aliases ?? []).includes(alias)
+    );
+    if (duplicate) {
+      setStatus({ type: 'error', message: 'Alias already used by another song.' });
+      return;
+    }
+    setState((prev) => ({
+      ...prev,
+      songs: prev.songs.map((song) =>
+        song.uri === aliasSong.uri
+          ? { ...song, aliases: [...(song.aliases ?? []), alias] }
+          : song
+      ),
+      points: prev.points.map((point) =>
+        point.uri === alias ? { ...point, uri: aliasSong.uri } : point
+      )
+    }));
+    setAliasInput('');
+  };
+
+  const removeAlias = (alias: string) => {
+    if (!aliasSong) return;
+    setState((prev) => ({
+      ...prev,
+      songs: prev.songs.map((song) =>
+        song.uri === aliasSong.uri
+          ? { ...song, aliases: (song.aliases ?? []).filter((item) => item !== alias) }
+          : song
+      )
+    }));
+  };
+
   return (
     <div className="app admin">
       <header className="hero">
@@ -388,6 +450,13 @@ function AdminPage({ state, setState }: AdminPageProps) {
                 ) : (
                   <p className="song-uri">{song.uri}</p>
                 )}
+                <button
+                  type="button"
+                  className="alias-link"
+                  onClick={() => openAliasModal(song.uri)}
+                >
+                  Aliases{song.aliases?.length ? ` (${song.aliases.length})` : ''}
+                </button>
                 <div className="round-grid small">
                   {ROUND_OPTIONS.map((round) => (
                     <label key={round} className="checkbox">
@@ -505,6 +574,50 @@ function AdminPage({ state, setState }: AdminPageProps) {
           Back to charts
         </a>
       </footer>
+      {aliasSong && (
+        <div className="modal-backdrop" onClick={closeAliasModal}>
+          <div className="modal" onClick={(event) => event.stopPropagation()}>
+            <div className="modal-header">
+              <div>
+                <h3>Aliases</h3>
+                <p className="muted">{aliasSong.uri}</p>
+              </div>
+              <button type="button" className="icon-btn small" onClick={closeAliasModal}>
+                ×
+              </button>
+            </div>
+            <div className="alias-list">
+              {(aliasSong.aliases ?? []).length ? (
+                aliasSong.aliases?.map((alias) => (
+                  <div key={alias} className="alias-row">
+                    <span>{alias}</span>
+                    <button
+                      type="button"
+                      className="alias-remove"
+                      onClick={() => removeAlias(alias)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <p className="muted">No aliases yet.</p>
+              )}
+            </div>
+            <div className="alias-input">
+              <input
+                type="text"
+                value={aliasInput}
+                placeholder="Add alias uri"
+                onChange={(event) => setAliasInput(event.target.value)}
+              />
+              <button className="btn" onClick={addAlias}>
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

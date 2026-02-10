@@ -22,10 +22,32 @@ function sanitizeSongs(input: unknown): Song[] {
       const uri = typeof (song as Song).uri === 'string' ? (song as Song).uri.trim() : '';
       const roundsRaw = (song as Song).rounds;
       const rounds = Array.isArray(roundsRaw) ? roundsRaw.filter(isRound) : [];
+      const aliasesRaw = (song as Song).aliases;
+      const aliases = Array.isArray(aliasesRaw)
+        ? Array.from(
+            new Set(
+              aliasesRaw
+                .filter((value) => typeof value === 'string')
+                .map((value) => value.trim())
+                .filter((value) => value && value !== uri)
+            )
+          )
+        : [];
       if (!uri) return null;
-      return { uri, rounds } satisfies Song;
+      return { uri, rounds, aliases } satisfies Song;
     })
     .filter(Boolean) as Song[];
+}
+
+function buildAliasMap(songs: Song[]): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const song of songs) {
+    map.set(song.uri, song.uri);
+    for (const alias of song.aliases ?? []) {
+      if (!map.has(alias)) map.set(alias, song.uri);
+    }
+  }
+  return map;
 }
 
 function sanitizePoints(input: unknown): Point[] {
@@ -62,10 +84,14 @@ function buildState(raw: unknown, strict: boolean): AppState {
     return EMPTY_STATE;
   }
   const songs = sanitizeSongs((raw as AppState).songs);
-  const allowedUris = new Set(songs.map((song) => song.uri));
-  const points = sanitizePoints((raw as AppState).points).filter((point) =>
-    allowedUris.has(point.uri)
-  );
+  const aliasMap = buildAliasMap(songs);
+  const points = sanitizePoints((raw as AppState).points)
+    .map((point) => {
+      const canonical = aliasMap.get(point.uri);
+      if (!canonical) return null;
+      return { ...point, uri: canonical };
+    })
+    .filter(Boolean) as Point[];
   return { version: 1, songs, points };
 }
 

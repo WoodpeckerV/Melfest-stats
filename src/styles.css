@@ -457,6 +457,23 @@ input[type='date']:focus {
   padding-right: 44px;
 }
 
+.alias-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.alias-link:hover {
+  color: var(--accent-3);
+}
+
 .icon-btn {
   width: 32px;
   height: 32px;
@@ -473,9 +490,88 @@ input[type='date']:focus {
   right: 12px;
 }
 
+.icon-btn.small {
+  position: static;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
 .icon-btn:hover {
   border-color: rgba(255, 255, 255, 0.3);
   color: var(--danger);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 12, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 50;
+}
+
+.modal {
+  width: min(420px, 92vw);
+  background: rgba(8, 10, 24, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.modal-header h3 {
+  margin: 0 0 6px;
+}
+
+.alias-list {
+  margin: 16px 0;
+  display: grid;
+  gap: 10px;
+}
+
+.alias-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(6, 10, 20, 0.6);
+  font-size: 13px;
+}
+
+.alias-remove {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.alias-input {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr auto;
+}
+
+.alias-input input {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-2);
+  color: var(--text-0);
 }
 
 .dropzone {
