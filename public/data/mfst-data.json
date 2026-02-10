@@ -699,6 +699,14 @@
     },
     {
       "date": "2026-02-09",
+      "uri": "spotify:track:3AfX2EhXub2DqgqJABSIXL",
+      "rank": 1,
+      "streams": 311033,
+      "artist": "FELICIA",
+      "track": "My System"
+    },
+    {
+      "date": "2026-02-09",
       "uri": "spotify:track:65xzEd5KnACVqZ6sDHMEuw",
       "rank": 2,
       "streams": 192654,
