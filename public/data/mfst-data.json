@@ -1424,6 +1424,150 @@
       "streams": 26899,
       "artist": "Indra",
       "track": "Beautiful Lie"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:3AfX2EhXub2DqgqJABSIXL",
+      "rank": 1,
+      "streams": 205003,
+      "artist": "FELICIA",
+      "track": "My System"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:65xzEd5KnACVqZ6sDHMEuw",
+      "rank": 2,
+      "streams": 158525,
+      "artist": "Brandsta City Släckers",
+      "track": "Rakt in i elden"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:0RcpZR36PfDvl4T02vepj6",
+      "rank": 3,
+      "streams": 154201,
+      "artist": "Medina",
+      "track": "Viva L’Amor"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 4,
+      "streams": 113175,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 6,
+      "streams": 100278,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 7,
+      "streams": 100106,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:6jUSZ7pXIrPXAUusFXA5Iy",
+      "rank": 8,
+      "streams": 97063,
+      "artist": "Saga Ludvigsson",
+      "track": "Ain't Today"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 9,
+      "streams": 82223,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:2LU2elj4xWnjTz6RCcPQCI",
+      "rank": 11,
+      "streams": 74783,
+      "artist": "Arwin",
+      "track": "Glitter"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:6FyxfxtSlNobcVL2IbHZWq",
+      "rank": 13,
+      "streams": 68042,
+      "artist": "Korslagda",
+      "track": "King Of Rock ’n’ Roll"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:6mnueZamMPlDBd9GCbPE5X",
+      "rank": 16,
+      "streams": 60026,
+      "artist": "Eva Jumatate",
+      "track": "Selfish"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:0QcDwx1r5HXsxyMstgvHSm",
+      "rank": 17,
+      "streams": 58580,
+      "artist": "Robin Bengtsson",
+      "track": "Honey Honey"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 28,
+      "streams": 49241,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:6XwSxRc0ibD5AkHTRsBbpx",
+      "rank": 38,
+      "streams": 39221,
+      "artist": "Patrik Jean",
+      "track": "Dusk Till Dawn"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:0L7mmcpKaTk5cCJqEF9vVf",
+      "rank": 41,
+      "streams": 36684,
+      "artist": "Emilia Pantic",
+      "track": "Ingenting"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:4kRZAIVd5BBkYSPRsqj2D2",
+      "rank": 50,
+      "streams": 32165,
+      "artist": "Klara Almström",
+      "track": "Där hela världen väntar"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:7jU2y3rilGzbkxbeonPNjN",
+      "rank": 70,
+      "streams": 23056,
+      "artist": "Laila Adèle",
+      "track": "Oxygen"
+    },
+    {
+      "date": "2026-02-15",
+      "uri": "spotify:track:5sRWs7SaGkpbujrJzHjeFl",
+      "rank": 77,
+      "streams": 21725,
+      "artist": "Indra",
+      "track": "Beautiful Lie"
     }
   ]
 }
