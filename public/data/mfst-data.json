@@ -139,6 +139,51 @@
         "Final"
       ],
       "aliases": []
+    },
+    {
+      "uri": "spotify:track:1ENWPMBX8mf4kyCpony4ut",
+      "rounds": [
+        "Heat 4",
+        "Finalkval"
+      ],
+      "aliases": []
+    },
+    {
+      "uri": "spotify:track:690MIMKpAyUshTiusrgrmn",
+      "rounds": [
+        "Heat 4"
+      ],
+      "aliases": []
+    },
+    {
+      "uri": "spotify:track:1IEgoHovZYbhwpk9LiTK9Z",
+      "rounds": [
+        "Heat 4",
+        "Final"
+      ],
+      "aliases": []
+    },
+    {
+      "uri": "spotify:track:4NF6LZiq3UJwVAAkpd5DWC",
+      "rounds": [
+        "Heat 4"
+      ],
+      "aliases": []
+    },
+    {
+      "uri": "spotify:track:1CGGrztimeQFtsmEVk9GFE",
+      "rounds": [
+        "Heat 4"
+      ],
+      "aliases": []
+    },
+    {
+      "uri": "spotify:track:29zuhsQWT2Ik7sPC2K1gPM",
+      "rounds": [
+        "Heat 4",
+        "Final"
+      ],
+      "aliases": []
     }
   ],
   "points": [
@@ -2083,6 +2128,182 @@
       "uri": "spotify:track:4kRZAIVd5BBkYSPRsqj2D2",
       "rank": 103,
       "streams": 20636,
+      "artist": "Klara Almström",
+      "track": "Där hela världen väntar"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:3AfX2EhXub2DqgqJABSIXL",
+      "rank": 1,
+      "streams": 195781,
+      "artist": "FELICIA",
+      "track": "My System"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:0RcpZR36PfDvl4T02vepj6",
+      "rank": 2,
+      "streams": 152342,
+      "artist": "Medina",
+      "track": "Viva L’Amor"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:65xzEd5KnACVqZ6sDHMEuw",
+      "rank": 3,
+      "streams": 147615,
+      "artist": "Brandsta City Släckers",
+      "track": "Rakt in i elden"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:0RxBz475eVWbDQQwcY7DNa",
+      "rank": 5,
+      "streams": 92420,
+      "artist": "noll2",
+      "track": "Berusade ord"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:5FjvINvxiM03aNN7o1nUVc",
+      "rank": 6,
+      "streams": 90836,
+      "artist": "A*Teens",
+      "track": "Iconic"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:6jUSZ7pXIrPXAUusFXA5Iy",
+      "rank": 7,
+      "streams": 87461,
+      "artist": "Saga Ludvigsson",
+      "track": "Ain't Today"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:36WOwjDaRzxOK1eE6XqdWf",
+      "rank": 9,
+      "streams": 81280,
+      "artist": "Junior Lerin",
+      "track": "Copacabana Boy"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:24akkpWAHCec0hXyN9R1ct",
+      "rank": 17,
+      "streams": 65451,
+      "artist": "Greczula",
+      "track": "Half Of Me"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:2LU2elj4xWnjTz6RCcPQCI",
+      "rank": 21,
+      "streams": 60009,
+      "artist": "Arwin",
+      "track": "Glitter"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:29zuhsQWT2Ik7sPC2K1gPM",
+      "rank": 23,
+      "streams": 54566,
+      "artist": "Smash Into Pieces",
+      "track": "Hollow"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:6FyxfxtSlNobcVL2IbHZWq",
+      "rank": 25,
+      "streams": 51820,
+      "artist": "Korslagda",
+      "track": "King Of Rock ’n’ Roll"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:0QcDwx1r5HXsxyMstgvHSm",
+      "rank": 30,
+      "streams": 49736,
+      "artist": "Robin Bengtsson",
+      "track": "Honey Honey"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:6mnueZamMPlDBd9GCbPE5X",
+      "rank": 39,
+      "streams": 42963,
+      "artist": "Eva Jumatate",
+      "track": "Selfish"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:1IEgoHovZYbhwpk9LiTK9Z",
+      "rank": 40,
+      "streams": 42272,
+      "artist": "Meira Omar",
+      "track": "Dooset Daram"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:6XwSxRc0ibD5AkHTRsBbpx",
+      "rank": 43,
+      "streams": 42060,
+      "artist": "Patrik Jean",
+      "track": "Dusk Till Dawn"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:2TFtcHGIGIvMOmyZgDoKR0",
+      "rank": 56,
+      "streams": 33796,
+      "artist": "Jacqline",
+      "track": "Woman"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:1ENWPMBX8mf4kyCpony4ut",
+      "rank": 58,
+      "streams": 32108,
+      "artist": "Cimberly",
+      "track": "Eternity"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:0L7mmcpKaTk5cCJqEF9vVf",
+      "rank": 61,
+      "streams": 31814,
+      "artist": "Emilia Pantic",
+      "track": "Ingenting"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:690MIMKpAyUshTiusrgrmn",
+      "rank": 65,
+      "streams": 30453,
+      "artist": "Timo Räisänen",
+      "track": "Ingenting är efter oss"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:4NF6LZiq3UJwVAAkpd5DWC",
+      "rank": 86,
+      "streams": 26771,
+      "artist": "Felix Manu",
+      "track": "Hatar att jag älskar dig"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:1CGGrztimeQFtsmEVk9GFE",
+      "rank": 98,
+      "streams": 24600,
+      "artist": "Erika Jonsson",
+      "track": "Från landet"
+    },
+    {
+      "date": "2026-02-20",
+      "uri": "spotify:track:4kRZAIVd5BBkYSPRsqj2D2",
+      "rank": 105,
+      "streams": 23929,
       "artist": "Klara Almström",
       "track": "Där hela världen väntar"
     }
